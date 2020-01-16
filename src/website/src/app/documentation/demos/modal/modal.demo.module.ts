@@ -5,7 +5,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClarityModule } from '@clr/angular';
+import {ClarityModule, ClrModal} from '@clr/angular';
 
 import { ModalStaticDemo } from './modal-static';
 import { ModalStyleDesignDemo } from './modal-style-design';
@@ -22,14 +22,45 @@ import { ModalDemo } from './modal.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
+import {DocLibModule} from "@vcd/ui-doc-lib";
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
     DocWrapperModule,
-    RouterModule.forChild([{ path: '', component: ModalDemo }]),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ModalDemo,
+        data: {
+          documentationEntry: {
+            component: ClrModal,
+            displayName: 'Clr Modal',
+            examples: [
+              {
+                component: ModalAngularShowDemo,
+                title: 'Basic demo showing Clr Angular modal',
+              },
+              {
+                component: ModalAngularSizeDemo,
+                title: 'Demo showing Modals of different sizes',
+              },
+              {
+                component: ModalAngularNotClosableDemo,
+                title: 'Demo showing Modal that is not closable',
+              },
+              {
+                component: ModalAngularStaticBackdropDemo,
+                title: 'Demo showing Modal with static backdrop',
+              }
+            ],
+          }
+        }
+      }
+    ]),
     UtilsModule,
+    DocLibModule,
   ],
   declarations: [
     ModalStaticDemo,

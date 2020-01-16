@@ -5,20 +5,12 @@
  */
 import { Component } from '@angular/core';
 
-const EXAMPLE = `
-<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false">
-    <h3 class="modal-title">No "x" in the top-right corner</h3>
-    <div class="modal-body">
-        <p>Clicking on the backdrop doesn't do anything.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="opened = false">
-            I'm the only way to close the modal!
-        </button>
-    </div>
-</clr-modal>
-`;
-
+/**
+ * If you don’t want your modal to be closable by clicking on the top-right “x” or on the mask, you can do so
+ * with the <code class="clr-code">clrModalClosable</code> input. The default value is
+ * <code class="clr-code">true</code>. You can still close the modal if one of <em>your</em>
+ * components modifies the value bound to <code class="clr-code">clrModalOpen</code
+ */
 @Component({
   selector: 'clr-modal-angular-not-closable-demo',
   templateUrl: './modal-angular-not-closable.demo.html',
@@ -26,5 +18,4 @@ const EXAMPLE = `
 export class ModalAngularNotClosableDemo {
   // Booleans to open each example modal
   public closable: boolean = false;
-  example = EXAMPLE;
 }

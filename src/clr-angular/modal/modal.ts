@@ -22,6 +22,9 @@ import { ClrCommonStringsService } from '../utils/i18n/common-strings.service';
 import { UNIQUE_ID, UNIQUE_ID_PROVIDER } from '../utils/id-generator/id-generator.service';
 import { ScrollingService } from '../utils/scrolling/scrolling-service';
 
+/**
+ * Modals provide information or help a user complete a task. They require the user to take an action to dismiss them.
+ */
 @Component({
   selector: 'clr-modal',
   viewProviders: [ScrollingService],
@@ -46,21 +49,43 @@ import { ScrollingService } from '../utils/scrolling/scrolling-service';
 })
 export class ClrModal implements OnChanges, OnDestroy {
   @ViewChild(FocusTrapDirective, { static: false })
-  focusTrap: FocusTrapDirective;
-
   @HostBinding('class.open')
-  @Input('clrModalOpen')
-  _open: boolean = false;
-  @Output('clrModalOpenChange') _openChanged: EventEmitter<boolean> = new EventEmitter<boolean>(false);
-
-  @Input('clrModalClosable') closable: boolean = true;
-  @Input('clrModalSize') size: string;
-  @Input('clrModalStaticBackdrop') staticBackdrop: boolean = true;
-  @Input('clrModalSkipAnimation') skipAnimation: string = 'false';
-
-  // presently this is only used by wizards
+  focusTrap: FocusTrapDirective;
+  /**
+   * NOTE: presently this is only used by wizards
+   */
   @Input('clrModalOverrideScrollService') bypassScrollService: boolean = false;
+  /**
+   * If true, the modal will not be closable by using keyboard
+   */
   @Input('clrModalPreventClose') stopClose: boolean = false;
+  /**
+   * Two-way binding on the state of the modal: opened or closed.
+   */
+  @Input('clrModalOpen') _open: boolean = false;
+  /**
+   * Event emitted whenever the value of 'clrModalOpen' changes
+   */
+  @Output('clrModalOpenChange') _openChanged: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  /**
+   * If false, the modal will not be closable by clicking on the mask or on the top-right "x".
+   */
+  @Input('clrModalClosable') closable: boolean = true;
+  /**
+   * Sets the size of the modal. If it's not set, the default size is medium.
+   */
+  @Input('clrModalSize') size: string;
+  /**
+   * If true, the modal will not close when the user clicks outside of the modal.
+   */
+  @Input('clrModalStaticBackdrop') staticBackdrop: boolean = true;
+  /**
+   * To skip the fading animation.
+   */
+  @Input('clrModalSkipAnimation') skipAnimation: string = 'false';
+  /**
+   * Emitted when closing of the modal through keyboard is prevented
+   */
   @Output('clrModalAlternateClose') altClose: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
   constructor(

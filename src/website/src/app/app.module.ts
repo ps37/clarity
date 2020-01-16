@@ -16,7 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DocumentationModule } from './documentation/documentation.module';
 import { UtilsModule } from './utils/utils.module';
 import { SkipLinkComponent } from './utils/skip-link.component';
-import {DocLibModule} from "@vcd/ui-doc-lib";
+import {CompodocSchema, DocLibModule} from "@vcd/ui-doc-lib";
 
 import componentsDocumentationJson from "../../gen/components-compodoc-documentation/documentation.json";
 import examplesDocumentationJson from "../../gen/examples-compodoc-documentation/documentation.json";
@@ -30,7 +30,7 @@ import examplesDocumentationJson from "../../gen/examples-compodoc-documentation
     DocumentationModule,
     UtilsModule,
     AppRoutingModule,
-    DocLibModule.forRoot([componentsDocumentationJson, examplesDocumentationJson] as any)
+    DocLibModule.forRoot([componentsDocumentationJson, examplesDocumentationJson] as CompodocSchema[])
   ],
   providers: [Title],
   bootstrap: [AppComponent],

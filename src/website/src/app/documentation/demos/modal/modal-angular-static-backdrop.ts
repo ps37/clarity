@@ -5,12 +5,12 @@
  */
 import { Component } from '@angular/core';
 
-const EXAMPLE = `
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
-    ...
-</clr-modal>
-`;
-
+/**
+ * A static example of a modal with header, body and footer.
+ * IE fix: When the modal dialog is open, extend the <code class="clr-code">.no-scrolling</code> class on the
+ * <code class="clr-code">body</code> tag so that the content behind the backdrop does not scroll. Remove the class when
+ * the modal dialog is closed.
+ */
 @Component({
   selector: 'clr-modal-angular-static-backdrop-demo',
   templateUrl: './modal-angular-static-backdrop.demo.html',
@@ -18,6 +18,4 @@ const EXAMPLE = `
 export class ModalAngularStaticBackdropDemo {
   // Booleans to open each example modal
   public static: boolean = false;
-
-  example = EXAMPLE;
 }
