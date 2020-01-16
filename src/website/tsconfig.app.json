@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "module": "esnext",
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "@clr/angular": ["../clr-angular"],
       "@clr/icons": ["../clr-icons"],
