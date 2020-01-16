@@ -5,20 +5,6 @@
  */
 import { Component } from '@angular/core';
 
-const EXAMPLE = `
-<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
-...
-</clr-modal>
-
-<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
-...
-</clr-modal>
-
-<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'xl'">
-...
-</clr-modal>
-`;
-
 @Component({
   selector: 'clr-modal-angular-size-demo',
   templateUrl: './modal-angular-size.demo.html',
@@ -28,6 +14,4 @@ export class ModalAngularSizeDemo {
   public small: boolean = false;
   public large: boolean = false;
   public extraLarge: boolean = false;
-
-  example = EXAMPLE;
 }

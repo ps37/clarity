@@ -5,12 +5,6 @@
  */
 import { Component } from '@angular/core';
 
-const EXAMPLE = `
-<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
-    ...
-</clr-modal>
-`;
-
 @Component({
   selector: 'clr-modal-angular-static-backdrop-demo',
   templateUrl: './modal-angular-static-backdrop.demo.html',
@@ -18,6 +12,4 @@ const EXAMPLE = `
 export class ModalAngularStaticBackdropDemo {
   // Booleans to open each example modal
   public static: boolean = false;
-
-  example = EXAMPLE;
 }
