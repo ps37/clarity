@@ -10,7 +10,7 @@
     "label-position": true,
     "member-access": false,
     "no-arg": true,
-    "no-barrel-imports": true,
+    "no-barrel-imports": false,
     "no-bitwise": true,
     "no-conditional-assignment": true,
     "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],

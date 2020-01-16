@@ -16,6 +16,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DocumentationModule } from './documentation/documentation.module';
 import { UtilsModule } from './utils/utils.module';
 import { SkipLinkComponent } from './utils/skip-link.component';
+import {DocLibModule} from "@vcd/ui-doc-lib";
+
+import componentsDocumentationJson from "../../gen/components-compodoc-documentation/documentation.json";
+import examplesDocumentationJson from "../../gen/examples-compodoc-documentation/documentation.json";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SkipLinkComponent],
@@ -26,8 +30,10 @@ import { SkipLinkComponent } from './utils/skip-link.component';
     DocumentationModule,
     UtilsModule,
     AppRoutingModule,
+    DocLibModule.forRoot([componentsDocumentationJson, examplesDocumentationJson] as any)
   ],
   providers: [Title],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
