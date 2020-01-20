@@ -6,7 +6,6 @@ export * from './documentation-retriever.service';
 export * from './documentation';
 export * from './doc-lib.module';
 export * from './api-viewer';
-export * from './compodoc';
 export * from './documentation-container';
 export * from './example-viewer';
 export * from './highlight';

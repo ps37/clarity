@@ -1,10 +1,10 @@
-import { Component, Input, ComponentFactoryResolver, ViewChild, ViewContainerRef, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { Component, Injectable, ɵɵdefineInjectable, Input, NgModule, ComponentFactoryResolver, ViewChild, ViewContainerRef, InjectionToken } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClarityModule } from '@clr/angular';
-import { CommonModule } from '@angular/common';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-scss';
+import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -220,6 +220,62 @@ class CompoDocRetrieverService {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: highlight/highlight.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class HighlightService {
+}
+HighlightService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ HighlightService.ngInjectableDef = ɵɵdefineInjectable({ factory: function HighlightService_Factory() { return new HighlightService(); }, token: HighlightService, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: highlight/prism/prism-highlight.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class PrismHighlightService extends HighlightService {
+    /**
+     * @param {?} code
+     * @return {?}
+     */
+    highlightTypescript(code) {
+        return this.highlight(code, Prism.languages.typescript);
+    }
+    /**
+     * @param {?} code
+     * @return {?}
+     */
+    highlightHtml(code) {
+        return this.highlight(code, Prism.languages.html);
+    }
+    /**
+     * @param {?} code
+     * @return {?}
+     */
+    highlightScss(code) {
+        return this.highlight(code, Prism.languages.scss);
+    }
+    /**
+     * @private
+     * @param {?} code
+     * @param {?} lang
+     * @return {?}
+     */
+    highlight(code, lang) {
+        return Prism.highlight(code || '', lang);
+    }
+}
+PrismHighlightService.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: overview-viewer/overview-viewer.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -229,7 +285,6 @@ class OverviewViewerComponent {
      */
     constructor(documentationRetriever) {
         this.documentationRetriever = documentationRetriever;
-        this.isNoOverviewMessageShown = true;
     }
     /**
      * @param {?} component
@@ -240,9 +295,7 @@ class OverviewViewerComponent {
             return;
         }
         // TODO: externalize string literals
-        this.overview =
-            this.documentationRetriever.getOverview(component) ||
-                (this.isNoOverviewMessageShown ? 'No Documentation found' : '');
+        this.overview = this.documentationRetriever.getOverview(component) || 'No Documentation found';
     }
 }
 OverviewViewerComponent.decorators = [
@@ -257,49 +310,25 @@ OverviewViewerComponent.ctorParameters = () => [
     { type: DocumentationRetrieverService }
 ];
 OverviewViewerComponent.propDecorators = {
-    isNoOverviewMessageShown: [{ type: Input }],
     component: [{ type: Input }]
 };
 
 /**
  * @fileoverview added by tsickle
- * Generated from: api-viewer/api-viewer.component.ts
+ * Generated from: overview-viewer/overview-viewer.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ApiViewerComponent {
-    /**
-     * @param {?} documentationRetriever
-     */
-    constructor(documentationRetriever) {
-        this.documentationRetriever = documentationRetriever;
-    }
-    /**
-     * Gets the input and output parameters from the Compodoc generated documentation json
-     * @param {?} component
-     * @return {?}
-     */
-    set component(component) {
-        if (!component) {
-            return;
-        }
-        this.inputParameters = this.documentationRetriever.getInputParameters(component);
-        this.outputParameters = this.documentationRetriever.getOutputParameters(component);
-    }
+/** @type {?} */
+const declarations = [OverviewViewerComponent];
+class OverviewViewerModule {
 }
-ApiViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: ' vcd-api-viewer',
-                template: "<h6>Inputs</h6>\n<table class=\"table\" *ngIf=\"inputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of inputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!inputParameters?.length\">The component has no input parameters</p>\n\n<h6>Outputs</h6>\n<table class=\"table\" *ngIf=\"outputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of outputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!outputParameters?.length\">The component does not emit any values</p>\n",
-                styles: ["::ng-deep body p{margin-top:0}"]
-            }] }
+OverviewViewerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [ClarityModule, CommonModule],
+                declarations: [...declarations],
+                exports: [...declarations],
+            },] }
 ];
-/** @nocollapse */
-ApiViewerComponent.ctorParameters = () => [
-    { type: DocumentationRetrieverService }
-];
-ApiViewerComponent.propDecorators = {
-    component: [{ type: Input }]
-};
 
 /**
  * @fileoverview added by tsickle
@@ -350,8 +379,8 @@ class ExampleViewerComponent {
 ExampleViewerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'vcd-example-viewer',
-                template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <vcd-overview-viewer [isNoOverviewMessageShown]=\"false\" [component]=\"exampleEntry?.component\"> </vcd-overview-viewer>\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
-                styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}:host ::ng-deep vcd-overview-viewer>div>p{margin-bottom:10px}"]
+                template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
+                styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}"]
             }] }
 ];
 /** @nocollapse */
@@ -362,21 +391,6 @@ ExampleViewerComponent.propDecorators = {
     exampleEntry: [{ type: Input }],
     exampleContainer: [{ type: ViewChild, args: ['exampleContainer', { static: true, read: ViewContainerRef },] }]
 };
-
-/**
- * @fileoverview added by tsickle
- * Generated from: highlight/highlight.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class HighlightService {
-}
-HighlightService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ HighlightService.ngInjectableDef = ɵɵdefineInjectable({ factory: function HighlightService_Factory() { return new HighlightService(); }, token: HighlightService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -428,43 +442,111 @@ SourceCodeViewerComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: highlight/prism/prism-highlight.service.ts
+ * Generated from: source-code-viewer/source-code-viewer.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PrismHighlightService extends HighlightService {
+/** @type {?} */
+const declarations$1 = [SourceCodeViewerComponent];
+class SourceCodeViewerModule {
+}
+SourceCodeViewerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [ClarityModule, CommonModule],
+                declarations: [...declarations$1],
+                exports: [...declarations$1],
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: example-viewer/example-viewer.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const declarations$2 = [ExampleViewerComponent];
+class ExampleViewerModule {
+}
+ExampleViewerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [ClarityModule, CommonModule, SourceCodeViewerModule],
+                declarations: [...declarations$2],
+                exports: [...declarations$2],
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: api-viewer/api-viewer.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ApiViewerComponent {
     /**
-     * @param {?} code
-     * @return {?}
+     * @param {?} documentationRetriever
      */
-    highlightTypescript(code) {
-        return this.highlight(code, Prism.languages.typescript);
+    constructor(documentationRetriever) {
+        this.documentationRetriever = documentationRetriever;
     }
     /**
-     * @param {?} code
+     * Gets the input and output parameters from the Compodoc generated documentation json
+     * @param {?} component
      * @return {?}
      */
-    highlightHtml(code) {
-        return this.highlight(code, Prism.languages.html);
-    }
-    /**
-     * @param {?} code
-     * @return {?}
-     */
-    highlightScss(code) {
-        return this.highlight(code, Prism.languages.scss);
-    }
-    /**
-     * @private
-     * @param {?} code
-     * @param {?} lang
-     * @return {?}
-     */
-    highlight(code, lang) {
-        return Prism.highlight(code || '', lang);
+    set component(component) {
+        if (!component) {
+            return;
+        }
+        this.inputParameters = this.documentationRetriever.getInputParameters(component);
+        this.outputParameters = this.documentationRetriever.getOutputParameters(component);
     }
 }
-PrismHighlightService.decorators = [
-    { type: Injectable }
+ApiViewerComponent.decorators = [
+    { type: Component, args: [{
+                selector: ' vcd-api-viewer',
+                template: "<h6>Inputs</h6>\n<table class=\"table\" *ngIf=\"inputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of inputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!inputParameters?.length\">The component has no input parameters</p>\n\n<h6>Outputs</h6>\n<table class=\"table\" *ngIf=\"outputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of outputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!outputParameters?.length\">The component does not emit any values</p>\n",
+                styles: ["::ng-deep body p{margin-top:0}"]
+            }] }
+];
+/** @nocollapse */
+ApiViewerComponent.ctorParameters = () => [
+    { type: DocumentationRetrieverService }
+];
+ApiViewerComponent.propDecorators = {
+    component: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: api-viewer/api-viewer.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const declarations$3 = [ApiViewerComponent];
+class ApiViewerModule {
+}
+ApiViewerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [ClarityModule, CommonModule],
+                declarations: [...declarations$3],
+                exports: [...declarations$3],
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: documentation-container/documentation-container.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const declarations$4 = [DocumentationContainerComponent];
+class DocumentationContainerModule {
+}
+DocumentationContainerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [ClarityModule, CommonModule, OverviewViewerModule, ApiViewerModule, ExampleViewerModule],
+                declarations: [...declarations$4],
+                entryComponents: [DocumentationContainerComponent],
+                exports: [...declarations$4],
+            },] }
 ];
 
 /**
@@ -473,13 +555,19 @@ PrismHighlightService.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const declarations = [
-    DocumentationContainerComponent,
-    OverviewViewerComponent,
-    ApiViewerComponent,
-    ExampleViewerComponent,
-    SourceCodeViewerComponent,
-];
+const declarations$5 = [];
+/**
+ * Token that makes the documentation jsons available to the following factory function.
+ * @type {?}
+ */
+const FOR_ROOT_DOCUMENTATIONS_TOKEN = new InjectionToken('DocLibModule.forRoot() CompoDocRetrieverService doc jsons.');
+/**
+ * @param {?} documentations
+ * @return {?}
+ */
+function getCompoDocRetrieverService(documentations) {
+    return new CompoDocRetrieverService(documentations);
+}
 class DocLibModule {
     /**
      * Called in the host package importing this doc library for providing the documentation JSONs needed for
@@ -491,20 +579,28 @@ class DocLibModule {
         return {
             ngModule: DocLibModule,
             providers: [
-                { provide: DocumentationRetrieverService, useValue: new CompoDocRetrieverService(documentations) },
+                // For injecting 'documentations' into factory function, we have to first provide them as injectable.
+                {
+                    provide: FOR_ROOT_DOCUMENTATIONS_TOKEN,
+                    useValue: documentations,
+                },
+                {
+                    provide: DocumentationRetrieverService,
+                    useFactory: getCompoDocRetrieverService,
+                    deps: [FOR_ROOT_DOCUMENTATIONS_TOKEN],
+                },
             ],
         };
     }
 }
 DocLibModule.decorators = [
     { type: NgModule, args: [{
-                imports: [ClarityModule, CommonModule],
-                declarations: [...declarations],
-                entryComponents: [DocumentationContainerComponent],
-                exports: [...declarations],
+                imports: [DocumentationContainerModule],
+                declarations: [...declarations$5],
+                exports: [...declarations$5],
                 providers: [{ provide: HighlightService, useClass: PrismHighlightService }],
             },] }
 ];
 
-export { ApiViewerComponent, DocLibModule, Documentation, DocumentationContainerComponent, DocumentationRetrieverService, ExampleViewerComponent, OverviewViewerComponent, PrismHighlightService, SourceCodeViewerComponent, DocumentationContainerComponent as ɵa, OverviewViewerComponent as ɵb, ApiViewerComponent as ɵc, ExampleViewerComponent as ɵd, SourceCodeViewerComponent as ɵe, HighlightService as ɵf, PrismHighlightService as ɵg, CompoDocRetrieverService as ɵh };
+export { ApiViewerComponent, DocLibModule, Documentation, DocumentationContainerComponent, DocumentationRetrieverService, ExampleViewerComponent, FOR_ROOT_DOCUMENTATIONS_TOKEN, OverviewViewerComponent, PrismHighlightService, SourceCodeViewerComponent, getCompoDocRetrieverService, CompoDocRetrieverService as ɵa, DocumentationContainerModule as ɵc, OverviewViewerModule as ɵd, OverviewViewerComponent as ɵe, ApiViewerModule as ɵf, ApiViewerComponent as ɵg, ExampleViewerModule as ɵh, SourceCodeViewerModule as ɵi, SourceCodeViewerComponent as ɵj, HighlightService as ɵk, ExampleViewerComponent as ɵl, DocumentationContainerComponent as ɵm, PrismHighlightService as ɵn };
 //# sourceMappingURL=vcd-ui-doc-lib.js.map

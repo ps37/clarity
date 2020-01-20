@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@clr/angular'), require('@angular/common'), require('prismjs'), require('prismjs/components/prism-typescript'), require('prismjs/components/prism-scss')) :
-    typeof define === 'function' && define.amd ? define('@vcd/ui-doc-lib', ['exports', '@angular/core', '@angular/router', '@clr/angular', '@angular/common', 'prismjs', 'prismjs/components/prism-typescript', 'prismjs/components/prism-scss'], factory) :
-    (global = global || self, factory((global.vcd = global.vcd || {}, global.vcd['ui-doc-lib'] = {}), global.ng.core, global.ng.router, global.angular, global.ng.common, global.Prism));
-}(this, (function (exports, core, router, angular, common, Prism) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('prismjs'), require('prismjs/components/prism-typescript'), require('prismjs/components/prism-scss'), require('@clr/angular'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@vcd/ui-doc-lib', ['exports', '@angular/core', '@angular/router', 'prismjs', 'prismjs/components/prism-typescript', 'prismjs/components/prism-scss', '@clr/angular', '@angular/common'], factory) :
+    (global = global || self, factory((global.vcd = global.vcd || {}, global.vcd['ui-doc-lib'] = {}), global.ng.core, global.ng.router, global.Prism, null, null, global.angular, global.ng.common));
+}(this, (function (exports, core, router, Prism, prismTypescript, prismScss, angular, common) { 'use strict';
 
     Prism = Prism && Prism.hasOwnProperty('default') ? Prism['default'] : Prism;
 
@@ -342,164 +342,6 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: overview-viewer/overview-viewer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var OverviewViewerComponent = /** @class */ (function () {
-        function OverviewViewerComponent(documentationRetriever) {
-            this.documentationRetriever = documentationRetriever;
-            this.isNoOverviewMessageShown = true;
-        }
-        Object.defineProperty(OverviewViewerComponent.prototype, "component", {
-            set: /**
-             * @param {?} component
-             * @return {?}
-             */
-            function (component) {
-                if (!component) {
-                    return;
-                }
-                // TODO: externalize string literals
-                this.overview =
-                    this.documentationRetriever.getOverview(component) ||
-                        (this.isNoOverviewMessageShown ? 'No Documentation found' : '');
-            },
-            enumerable: true,
-            configurable: true
-        });
-        OverviewViewerComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'vcd-overview-viewer',
-                        template: "<div [innerHTML]=\"overview\"></div>\n",
-                        styles: [""]
-                    }] }
-        ];
-        /** @nocollapse */
-        OverviewViewerComponent.ctorParameters = function () { return [
-            { type: DocumentationRetrieverService }
-        ]; };
-        OverviewViewerComponent.propDecorators = {
-            isNoOverviewMessageShown: [{ type: core.Input }],
-            component: [{ type: core.Input }]
-        };
-        return OverviewViewerComponent;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: api-viewer/api-viewer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ApiViewerComponent = /** @class */ (function () {
-        function ApiViewerComponent(documentationRetriever) {
-            this.documentationRetriever = documentationRetriever;
-        }
-        Object.defineProperty(ApiViewerComponent.prototype, "component", {
-            /**
-             * Gets the input and output parameters from the Compodoc generated documentation json
-             */
-            set: /**
-             * Gets the input and output parameters from the Compodoc generated documentation json
-             * @param {?} component
-             * @return {?}
-             */
-            function (component) {
-                if (!component) {
-                    return;
-                }
-                this.inputParameters = this.documentationRetriever.getInputParameters(component);
-                this.outputParameters = this.documentationRetriever.getOutputParameters(component);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        ApiViewerComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: ' vcd-api-viewer',
-                        template: "<h6>Inputs</h6>\n<table class=\"table\" *ngIf=\"inputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of inputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!inputParameters?.length\">The component has no input parameters</p>\n\n<h6>Outputs</h6>\n<table class=\"table\" *ngIf=\"outputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of outputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!outputParameters?.length\">The component does not emit any values</p>\n",
-                        styles: ["::ng-deep body p{margin-top:0}"]
-                    }] }
-        ];
-        /** @nocollapse */
-        ApiViewerComponent.ctorParameters = function () { return [
-            { type: DocumentationRetrieverService }
-        ]; };
-        ApiViewerComponent.propDecorators = {
-            component: [{ type: core.Input }]
-        };
-        return ApiViewerComponent;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: example-viewer/example-viewer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ExampleViewerComponent = /** @class */ (function () {
-        function ExampleViewerComponent(resolver) {
-            this.resolver = resolver;
-            /**
-             * For showing and hiding of {\@link SourceCodeViewerComponent} in the HTML
-             */
-            this.showSourceCode = false;
-        }
-        Object.defineProperty(ExampleViewerComponent.prototype, "exampleEntry", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._exampleEntry;
-            },
-            set: /**
-             * @param {?} exampleEntry
-             * @return {?}
-             */
-            function (exampleEntry) {
-                this._exampleEntry = exampleEntry;
-                this.createExample();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        ExampleViewerComponent.prototype.createExample = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.exampleContainer.clear();
-            /** @type {?} */
-            var exampleEntry = this.exampleEntry;
-            if (!exampleEntry || !exampleEntry.component) {
-                return;
-            }
-            /** @type {?} */
-            var factory = this.resolver.resolveComponentFactory(exampleEntry.component);
-            this.exampleContainer.createComponent(factory);
-        };
-        ExampleViewerComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'vcd-example-viewer',
-                        template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <vcd-overview-viewer [isNoOverviewMessageShown]=\"false\" [component]=\"exampleEntry?.component\"> </vcd-overview-viewer>\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
-                        styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}:host ::ng-deep vcd-overview-viewer>div>p{margin-bottom:10px}"]
-                    }] }
-        ];
-        /** @nocollapse */
-        ExampleViewerComponent.ctorParameters = function () { return [
-            { type: core.ComponentFactoryResolver }
-        ]; };
-        ExampleViewerComponent.propDecorators = {
-            exampleEntry: [{ type: core.Input }],
-            exampleContainer: [{ type: core.ViewChild, args: ['exampleContainer', { static: true, read: core.ViewContainerRef },] }]
-        };
-        return ExampleViewerComponent;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: highlight/highlight.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -514,58 +356,6 @@
         ];
         /** @nocollapse */ HighlightService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function HighlightService_Factory() { return new HighlightService(); }, token: HighlightService, providedIn: "root" });
         return HighlightService;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: source-code-viewer/source-code-viewer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * To display the 3 code parts(TypeScript, HTML and CSS) of a component
-     */
-    var SourceCodeViewerComponent = /** @class */ (function () {
-        function SourceCodeViewerComponent(documentationRetriever, highlightService) {
-            this.documentationRetriever = documentationRetriever;
-            this.highlightService = highlightService;
-        }
-        Object.defineProperty(SourceCodeViewerComponent.prototype, "component", {
-            /**
-             * The component which source (typescript, html, css) will be displayed
-             */
-            set: /**
-             * The component which source (typescript, html, css) will be displayed
-             * @param {?} component
-             * @return {?}
-             */
-            function (component) {
-                if (!component) {
-                    return;
-                }
-                // TODO: externalize string literals
-                this.typescriptSourceCode = this.highlightService.highlightTypescript(this.documentationRetriever.getTypescriptSourceCode(component));
-                this.htmlSourceCode = this.highlightService.highlightHtml(this.documentationRetriever.getHtmlSourceCode(component) || 'No html found');
-                this.cssSourceCode = this.highlightService.highlightScss(this.documentationRetriever.getCssSourceCode(component) || 'No CSS found');
-            },
-            enumerable: true,
-            configurable: true
-        });
-        SourceCodeViewerComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'vcd-source-code-viewer',
-                        template: "<clr-tabs>\n    <clr-tab>\n        <button clrTabLink>Typescript</button>\n        <clr-tab-content>\n            <pre class=\"language-ts\"><code [innerHTML]=\"typescriptSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n\n    <clr-tab>\n        <button clrTabLink>HTML</button>\n        <clr-tab-content>\n            <pre class=\"language-html\"><code [innerHTML]=\"htmlSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n\n    <clr-tab>\n        <button clrTabLink>CSS</button>\n        <clr-tab-content>\n            <pre class=\"language-scss\"><code [innerHTML]=\"cssSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n</clr-tabs>\n",
-                        styles: ["pre{height:15rem;max-height:15rem;border-radius:3px}"]
-                    }] }
-        ];
-        /** @nocollapse */
-        SourceCodeViewerComponent.ctorParameters = function () { return [
-            { type: DocumentationRetrieverService },
-            { type: HighlightService }
-        ]; };
-        SourceCodeViewerComponent.propDecorators = {
-            component: [{ type: core.Input }]
-        };
-        return SourceCodeViewerComponent;
     }());
 
     /**
@@ -634,17 +424,330 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: overview-viewer/overview-viewer.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var OverviewViewerComponent = /** @class */ (function () {
+        function OverviewViewerComponent(documentationRetriever) {
+            this.documentationRetriever = documentationRetriever;
+        }
+        Object.defineProperty(OverviewViewerComponent.prototype, "component", {
+            set: /**
+             * @param {?} component
+             * @return {?}
+             */
+            function (component) {
+                if (!component) {
+                    return;
+                }
+                // TODO: externalize string literals
+                this.overview = this.documentationRetriever.getOverview(component) || 'No Documentation found';
+            },
+            enumerable: true,
+            configurable: true
+        });
+        OverviewViewerComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'vcd-overview-viewer',
+                        template: "<div [innerHTML]=\"overview\"></div>\n",
+                        styles: [""]
+                    }] }
+        ];
+        /** @nocollapse */
+        OverviewViewerComponent.ctorParameters = function () { return [
+            { type: DocumentationRetrieverService }
+        ]; };
+        OverviewViewerComponent.propDecorators = {
+            component: [{ type: core.Input }]
+        };
+        return OverviewViewerComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: overview-viewer/overview-viewer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var declarations = [OverviewViewerComponent];
+    var OverviewViewerModule = /** @class */ (function () {
+        function OverviewViewerModule() {
+        }
+        OverviewViewerModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [angular.ClarityModule, common.CommonModule],
+                        declarations: __spread(declarations),
+                        exports: __spread(declarations),
+                    },] }
+        ];
+        return OverviewViewerModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: example-viewer/example-viewer.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ExampleViewerComponent = /** @class */ (function () {
+        function ExampleViewerComponent(resolver) {
+            this.resolver = resolver;
+            /**
+             * For showing and hiding of {\@link SourceCodeViewerComponent} in the HTML
+             */
+            this.showSourceCode = false;
+        }
+        Object.defineProperty(ExampleViewerComponent.prototype, "exampleEntry", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._exampleEntry;
+            },
+            set: /**
+             * @param {?} exampleEntry
+             * @return {?}
+             */
+            function (exampleEntry) {
+                this._exampleEntry = exampleEntry;
+                this.createExample();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @private
+         * @return {?}
+         */
+        ExampleViewerComponent.prototype.createExample = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.exampleContainer.clear();
+            /** @type {?} */
+            var exampleEntry = this.exampleEntry;
+            if (!exampleEntry || !exampleEntry.component) {
+                return;
+            }
+            /** @type {?} */
+            var factory = this.resolver.resolveComponentFactory(exampleEntry.component);
+            this.exampleContainer.createComponent(factory);
+        };
+        ExampleViewerComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'vcd-example-viewer',
+                        template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
+                        styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}"]
+                    }] }
+        ];
+        /** @nocollapse */
+        ExampleViewerComponent.ctorParameters = function () { return [
+            { type: core.ComponentFactoryResolver }
+        ]; };
+        ExampleViewerComponent.propDecorators = {
+            exampleEntry: [{ type: core.Input }],
+            exampleContainer: [{ type: core.ViewChild, args: ['exampleContainer', { static: true, read: core.ViewContainerRef },] }]
+        };
+        return ExampleViewerComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: source-code-viewer/source-code-viewer.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * To display the 3 code parts(TypeScript, HTML and CSS) of a component
+     */
+    var SourceCodeViewerComponent = /** @class */ (function () {
+        function SourceCodeViewerComponent(documentationRetriever, highlightService) {
+            this.documentationRetriever = documentationRetriever;
+            this.highlightService = highlightService;
+        }
+        Object.defineProperty(SourceCodeViewerComponent.prototype, "component", {
+            /**
+             * The component which source (typescript, html, css) will be displayed
+             */
+            set: /**
+             * The component which source (typescript, html, css) will be displayed
+             * @param {?} component
+             * @return {?}
+             */
+            function (component) {
+                if (!component) {
+                    return;
+                }
+                // TODO: externalize string literals
+                this.typescriptSourceCode = this.highlightService.highlightTypescript(this.documentationRetriever.getTypescriptSourceCode(component));
+                this.htmlSourceCode = this.highlightService.highlightHtml(this.documentationRetriever.getHtmlSourceCode(component) || 'No html found');
+                this.cssSourceCode = this.highlightService.highlightScss(this.documentationRetriever.getCssSourceCode(component) || 'No CSS found');
+            },
+            enumerable: true,
+            configurable: true
+        });
+        SourceCodeViewerComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'vcd-source-code-viewer',
+                        template: "<clr-tabs>\n    <clr-tab>\n        <button clrTabLink>Typescript</button>\n        <clr-tab-content>\n            <pre class=\"language-ts\"><code [innerHTML]=\"typescriptSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n\n    <clr-tab>\n        <button clrTabLink>HTML</button>\n        <clr-tab-content>\n            <pre class=\"language-html\"><code [innerHTML]=\"htmlSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n\n    <clr-tab>\n        <button clrTabLink>CSS</button>\n        <clr-tab-content>\n            <pre class=\"language-scss\"><code [innerHTML]=\"cssSourceCode\"></code></pre>\n        </clr-tab-content>\n    </clr-tab>\n</clr-tabs>\n",
+                        styles: ["pre{height:15rem;max-height:15rem;border-radius:3px}"]
+                    }] }
+        ];
+        /** @nocollapse */
+        SourceCodeViewerComponent.ctorParameters = function () { return [
+            { type: DocumentationRetrieverService },
+            { type: HighlightService }
+        ]; };
+        SourceCodeViewerComponent.propDecorators = {
+            component: [{ type: core.Input }]
+        };
+        return SourceCodeViewerComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: source-code-viewer/source-code-viewer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var declarations$1 = [SourceCodeViewerComponent];
+    var SourceCodeViewerModule = /** @class */ (function () {
+        function SourceCodeViewerModule() {
+        }
+        SourceCodeViewerModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [angular.ClarityModule, common.CommonModule],
+                        declarations: __spread(declarations$1),
+                        exports: __spread(declarations$1),
+                    },] }
+        ];
+        return SourceCodeViewerModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: example-viewer/example-viewer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var declarations$2 = [ExampleViewerComponent];
+    var ExampleViewerModule = /** @class */ (function () {
+        function ExampleViewerModule() {
+        }
+        ExampleViewerModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [angular.ClarityModule, common.CommonModule, SourceCodeViewerModule],
+                        declarations: __spread(declarations$2),
+                        exports: __spread(declarations$2),
+                    },] }
+        ];
+        return ExampleViewerModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: api-viewer/api-viewer.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ApiViewerComponent = /** @class */ (function () {
+        function ApiViewerComponent(documentationRetriever) {
+            this.documentationRetriever = documentationRetriever;
+        }
+        Object.defineProperty(ApiViewerComponent.prototype, "component", {
+            /**
+             * Gets the input and output parameters from the Compodoc generated documentation json
+             */
+            set: /**
+             * Gets the input and output parameters from the Compodoc generated documentation json
+             * @param {?} component
+             * @return {?}
+             */
+            function (component) {
+                if (!component) {
+                    return;
+                }
+                this.inputParameters = this.documentationRetriever.getInputParameters(component);
+                this.outputParameters = this.documentationRetriever.getOutputParameters(component);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ApiViewerComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: ' vcd-api-viewer',
+                        template: "<h6>Inputs</h6>\n<table class=\"table\" *ngIf=\"inputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of inputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!inputParameters?.length\">The component has no input parameters</p>\n\n<h6>Outputs</h6>\n<table class=\"table\" *ngIf=\"outputParameters?.length\">\n    <thead>\n        <tr>\n            <th class=\"left\">Name</th>\n            <th>Type</th>\n            <th class=\"left\">Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let par of outputParameters\">\n            <td class=\"left\">\n                <p>{{ par.name }}</p>\n            </td>\n            <td>{{ par.type }}</td>\n            <td class=\"left\"><div [innerHTML]=\"par.description\"></div></td>\n        </tr>\n    </tbody>\n</table>\n<p *ngIf=\"!outputParameters?.length\">The component does not emit any values</p>\n",
+                        styles: ["::ng-deep body p{margin-top:0}"]
+                    }] }
+        ];
+        /** @nocollapse */
+        ApiViewerComponent.ctorParameters = function () { return [
+            { type: DocumentationRetrieverService }
+        ]; };
+        ApiViewerComponent.propDecorators = {
+            component: [{ type: core.Input }]
+        };
+        return ApiViewerComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: api-viewer/api-viewer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var declarations$3 = [ApiViewerComponent];
+    var ApiViewerModule = /** @class */ (function () {
+        function ApiViewerModule() {
+        }
+        ApiViewerModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [angular.ClarityModule, common.CommonModule],
+                        declarations: __spread(declarations$3),
+                        exports: __spread(declarations$3),
+                    },] }
+        ];
+        return ApiViewerModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: documentation-container/documentation-container.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var declarations$4 = [DocumentationContainerComponent];
+    var DocumentationContainerModule = /** @class */ (function () {
+        function DocumentationContainerModule() {
+        }
+        DocumentationContainerModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [angular.ClarityModule, common.CommonModule, OverviewViewerModule, ApiViewerModule, ExampleViewerModule],
+                        declarations: __spread(declarations$4),
+                        entryComponents: [DocumentationContainerComponent],
+                        exports: __spread(declarations$4),
+                    },] }
+        ];
+        return DocumentationContainerModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: doc-lib.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var declarations = [
-        DocumentationContainerComponent,
-        OverviewViewerComponent,
-        ApiViewerComponent,
-        ExampleViewerComponent,
-        SourceCodeViewerComponent,
-    ];
+    var declarations$5 = [];
+    /**
+     * Token that makes the documentation jsons available to the following factory function.
+     * @type {?}
+     */
+    var FOR_ROOT_DOCUMENTATIONS_TOKEN = new core.InjectionToken('DocLibModule.forRoot() CompoDocRetrieverService doc jsons.');
+    /**
+     * @param {?} documentations
+     * @return {?}
+     */
+    function getCompoDocRetrieverService(documentations) {
+        return new CompoDocRetrieverService(documentations);
+    }
     var DocLibModule = /** @class */ (function () {
         function DocLibModule() {
         }
@@ -668,16 +771,24 @@
             return {
                 ngModule: DocLibModule,
                 providers: [
-                    { provide: DocumentationRetrieverService, useValue: new CompoDocRetrieverService(documentations) },
+                    // For injecting 'documentations' into factory function, we have to first provide them as injectable.
+                    {
+                        provide: FOR_ROOT_DOCUMENTATIONS_TOKEN,
+                        useValue: documentations,
+                    },
+                    {
+                        provide: DocumentationRetrieverService,
+                        useFactory: getCompoDocRetrieverService,
+                        deps: [FOR_ROOT_DOCUMENTATIONS_TOKEN],
+                    },
                 ],
             };
         };
         DocLibModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [angular.ClarityModule, common.CommonModule],
-                        declarations: __spread(declarations),
-                        entryComponents: [DocumentationContainerComponent],
-                        exports: __spread(declarations),
+                        imports: [DocumentationContainerModule],
+                        declarations: __spread(declarations$5),
+                        exports: __spread(declarations$5),
                         providers: [{ provide: HighlightService, useClass: PrismHighlightService }],
                     },] }
         ];
@@ -690,17 +801,24 @@
     exports.DocumentationContainerComponent = DocumentationContainerComponent;
     exports.DocumentationRetrieverService = DocumentationRetrieverService;
     exports.ExampleViewerComponent = ExampleViewerComponent;
+    exports.FOR_ROOT_DOCUMENTATIONS_TOKEN = FOR_ROOT_DOCUMENTATIONS_TOKEN;
     exports.OverviewViewerComponent = OverviewViewerComponent;
     exports.PrismHighlightService = PrismHighlightService;
     exports.SourceCodeViewerComponent = SourceCodeViewerComponent;
-    exports.ɵa = DocumentationContainerComponent;
-    exports.ɵb = OverviewViewerComponent;
-    exports.ɵc = ApiViewerComponent;
-    exports.ɵd = ExampleViewerComponent;
-    exports.ɵe = SourceCodeViewerComponent;
-    exports.ɵf = HighlightService;
-    exports.ɵg = PrismHighlightService;
-    exports.ɵh = CompoDocRetrieverService;
+    exports.getCompoDocRetrieverService = getCompoDocRetrieverService;
+    exports.ɵa = CompoDocRetrieverService;
+    exports.ɵc = DocumentationContainerModule;
+    exports.ɵd = OverviewViewerModule;
+    exports.ɵe = OverviewViewerComponent;
+    exports.ɵf = ApiViewerModule;
+    exports.ɵg = ApiViewerComponent;
+    exports.ɵh = ExampleViewerModule;
+    exports.ɵi = SourceCodeViewerModule;
+    exports.ɵj = SourceCodeViewerComponent;
+    exports.ɵk = HighlightService;
+    exports.ɵl = ExampleViewerComponent;
+    exports.ɵm = DocumentationContainerComponent;
+    exports.ɵn = PrismHighlightService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
