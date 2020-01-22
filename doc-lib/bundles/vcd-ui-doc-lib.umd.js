@@ -430,6 +430,7 @@
     var OverviewViewerComponent = /** @class */ (function () {
         function OverviewViewerComponent(documentationRetriever) {
             this.documentationRetriever = documentationRetriever;
+            this.isNoOverviewMessageShown = true;
         }
         Object.defineProperty(OverviewViewerComponent.prototype, "component", {
             set: /**
@@ -441,7 +442,9 @@
                     return;
                 }
                 // TODO: externalize string literals
-                this.overview = this.documentationRetriever.getOverview(component) || 'No Documentation found';
+                this.overview =
+                    this.documentationRetriever.getOverview(component) ||
+                        (this.isNoOverviewMessageShown ? 'No Documentation found' : '');
             },
             enumerable: true,
             configurable: true
@@ -458,6 +461,7 @@
             { type: DocumentationRetrieverService }
         ]; };
         OverviewViewerComponent.propDecorators = {
+            isNoOverviewMessageShown: [{ type: core.Input }],
             component: [{ type: core.Input }]
         };
         return OverviewViewerComponent;
@@ -536,8 +540,8 @@
         ExampleViewerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'vcd-example-viewer',
-                        template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
-                        styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}"]
+                        template: "<div class=\"card\">\n    <div class=\"card-header-main\">\n        <div class=\"card-header\">\n            {{ exampleEntry?.title }}\n        </div>\n        <div class=\"example-button-container\" [ngClass]=\"{ 'example-shown': showSourceCode }\">\n            <clr-icon shape=\"code\" size=\"32\" (click)=\"showSourceCode = !showSourceCode\"> </clr-icon>\n        </div>\n    </div>\n\n    <div class=\"card-block source-code-container\" *ngIf=\"showSourceCode\">\n        <vcd-source-code-viewer [component]=\"exampleEntry?.component\"> </vcd-source-code-viewer>\n    </div>\n    <div class=\"card-block\">\n        <div class=\"card-text\">\n            <vcd-overview-viewer [isNoOverviewMessageShown]=\"false\" [component]=\"exampleEntry?.component\"></vcd-overview-viewer>\n            <template #exampleContainer> </template>\n        </div>\n    </div>\n</div>\n",
+                        styles: [".card-header-main{display:flex}.card-header-main .card-header{flex:1}.card-header-main .example-button-container{display:flex;margin:.5rem .5rem 0 0}.card-header-main .example-button-container.example-shown{border-radius:3px 3px 0 0;background-color:#d8e3e9}.card-header-main .example-button-container clr-icon{-ms-grid-row-align:center;align-self:center}.source-code-container{border-radius:3px 0 3px 3px;background-color:#d8e3e9;margin:0 .5rem}:host ::ng-deep vcd-overview-viewer>div>p{margin-bottom:10px}"]
                     }] }
         ];
         /** @nocollapse */
@@ -635,7 +639,7 @@
         }
         ExampleViewerModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [angular.ClarityModule, common.CommonModule, SourceCodeViewerModule],
+                        imports: [angular.ClarityModule, common.CommonModule, SourceCodeViewerModule, OverviewViewerModule],
                         declarations: __spread(declarations$2),
                         exports: __spread(declarations$2),
                     },] }
@@ -723,7 +727,7 @@
                         imports: [angular.ClarityModule, common.CommonModule, OverviewViewerModule, ApiViewerModule, ExampleViewerModule],
                         declarations: __spread(declarations$4),
                         entryComponents: [DocumentationContainerComponent],
-                        exports: __spread(declarations$4),
+                        exports: __spread(declarations$4, [OverviewViewerModule, ApiViewerModule, ExampleViewerModule]),
                     },] }
         ];
         return DocumentationContainerModule;
@@ -788,7 +792,7 @@
             { type: core.NgModule, args: [{
                         imports: [DocumentationContainerModule],
                         declarations: __spread(declarations$5),
-                        exports: __spread(declarations$5),
+                        exports: __spread(declarations$5, [DocumentationContainerModule]),
                         providers: [{ provide: HighlightService, useClass: PrismHighlightService }],
                     },] }
         ];

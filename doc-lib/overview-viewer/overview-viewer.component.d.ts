@@ -11,5 +11,6 @@ export declare class OverviewViewerComponent {
      */
     overview: string;
     constructor(documentationRetriever: DocumentationRetrieverService);
+    isNoOverviewMessageShown: boolean;
     component: Type<any>;
 }
