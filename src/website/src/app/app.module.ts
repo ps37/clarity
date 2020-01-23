@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -16,13 +16,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DocumentationModule } from './documentation/documentation.module';
 import { UtilsModule } from './utils/utils.module';
 import { SkipLinkComponent } from './utils/skip-link.component';
-import {DocLibModule} from "@vcd/ui-doc-lib";
+import { DocLibModule } from '@vcd/ui-doc-lib';
+import { AbTestingTimerComponent } from './ab-testing-timer.component';
 
-import componentsDocumentationJson from "../../gen/components-compodoc-documentation/documentation.json";
-import examplesDocumentationJson from "../../gen/examples-compodoc-documentation/documentation.json";
+import componentsDocumentationJson from '../../gen/components-doc-data.json';
+import examplesDocumentationJson from '../../gen/examples-doc-data.json';
+import stackblitzJson from '../../gen/stackblitz-data.json';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SkipLinkComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SkipLinkComponent, AbTestingTimerComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'clarity' }),
     BrowserAnimationsModule,
@@ -30,10 +32,9 @@ import examplesDocumentationJson from "../../gen/examples-compodoc-documentation
     DocumentationModule,
     UtilsModule,
     AppRoutingModule,
-    DocLibModule.forRoot([componentsDocumentationJson, examplesDocumentationJson])
+    DocLibModule.forRoot([componentsDocumentationJson, examplesDocumentationJson], stackblitzJson),
   ],
   providers: [Title],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

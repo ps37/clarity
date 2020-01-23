@@ -1,19 +1,19 @@
 /*
- * Copyright (c) 2016-2018 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ClarityModule, ClrModal} from '@clr/angular';
+import { ClarityModule, ClrModal } from '@clr/angular';
 
 import { ModalStaticDemo } from './modal-static';
 import { ModalStyleDesignDemo } from './modal-style-design';
 import { ModalSizeDesignDemo } from './modal-size-design';
 import { ModalAnimationDesignDemo } from './modal-animation-design';
-import { ModalAngularNotClosableDemo } from './modal-angular-not-closable';
-import { ModalAngularShowDemo } from './modal-angular-show';
-import { ModalAngularSizeDemo } from './modal-angular-size';
+import { ModalAngularNotClosableExampleComponent } from './modal-angular-not-closable.example.component';
+import { ModalAngularShowExampleComponent } from './modal-angular-show.example.component';
+import { ModalAngularSizeExampleComponent } from './modal-angular-size.example.component';
 import { ModalAngularStaticBackdropDemo } from './modal-angular-static-backdrop';
 import { ModalAnimationDemo } from './modal-animation';
 import { ModalBackdropDemo } from './modal-backdrop';
@@ -22,7 +22,10 @@ import { ModalDemo } from './modal.demo';
 import { DocWrapperModule } from '../_doc-wrapper/doc-wrapper.module';
 import { RouterModule } from '@angular/router';
 import { UtilsModule } from '../../../utils/utils.module';
-import {DocLibModule} from "@vcd/ui-doc-lib";
+import { DocLibModule } from '@vcd/ui-doc-lib';
+import { ModalAngularShowExampleModule } from './modal-angular-show.example.module';
+import { ModalAngularSizeExampleModule } from './modal-angular-size.example.module';
+import { ModalAngularNotClosableExampleModule } from './modal-angular-not-closable.example.module';
 
 @NgModule({
   imports: [
@@ -39,37 +42,33 @@ import {DocLibModule} from "@vcd/ui-doc-lib";
             displayName: 'Clr Modal',
             examples: [
               {
-                component: ModalAngularShowDemo,
-                title: 'Basic demo showing Clr Angular modal',
+                component: ModalAngularShowExampleComponent,
+                title: 'Basic Clr Angular modal',
               },
               {
-                component: ModalAngularSizeDemo,
-                title: 'Demo showing Modals of different sizes',
+                component: ModalAngularSizeExampleComponent,
+                title: 'Modals of different sizes',
               },
               {
-                component: ModalAngularNotClosableDemo,
-                title: 'Demo showing Modal that is not closable',
+                component: ModalAngularNotClosableExampleComponent,
+                title: 'Modal that is not closable',
               },
-              {
-                component: ModalAngularStaticBackdropDemo,
-                title: 'Demo showing Modal with static backdrop',
-              }
             ],
-          }
-        }
-      }
+          },
+        },
+      },
     ]),
     UtilsModule,
     DocLibModule,
+    ModalAngularShowExampleModule,
+    ModalAngularSizeExampleModule,
+    ModalAngularNotClosableExampleModule,
   ],
   declarations: [
     ModalStaticDemo,
     ModalStyleDesignDemo,
     ModalSizeDesignDemo,
     ModalAnimationDesignDemo,
-    ModalAngularNotClosableDemo,
-    ModalAngularShowDemo,
-    ModalAngularSizeDemo,
     ModalAngularStaticBackdropDemo,
     ModalAnimationDemo,
     ModalBackdropDemo,
@@ -78,4 +77,4 @@ import {DocLibModule} from "@vcd/ui-doc-lib";
   ],
   exports: [ModalDemo],
 })
-export class ModalDemoModule {}
+export class ModalExamplesModule {}

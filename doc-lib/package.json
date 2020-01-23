@@ -4,11 +4,16 @@
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
-    "prismjs": "1.14.0"
+    "prismjs": "1.17.1"
   },
   "dependencies": {
     "@compodoc/compodoc": "1.1.11",
+    "directory-tree": "^2.2.4",
     "tslib": "^1.9.0"
+  },
+  "bin": {
+    "build-doc": "./scripts/index.js",
+    "create-stackblitz-data": "./scripts/create-stackblitz-data.js"
   },
   "main": "bundles/vcd-ui-doc-lib.umd.js",
   "module": "fesm5/vcd-ui-doc-lib.js",

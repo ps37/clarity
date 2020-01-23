@@ -6,7 +6,7 @@
     "ng": "ng",
     "clean": "del dist",
     "start": "npm run angular:dev:start",
-    "build": "npm-run-all rebuild:node-sass build:ci build:components-doc website:build build:clean",
+    "build": "npm-run-all rebuild:node-sass build:ci website:build build:clean",
     "rebuild:node-sass": "npm rebuild node-sass",
     "build:ci": "npm-run-all clean -p lint -s build:libs build:apps build:clean",
     "build:libs": "npm-run-all -p ui:build icons:build schematics:build core:build -s angular:build",
@@ -59,7 +59,7 @@
     "schematics:build:collection": "cpy --parents --cwd='src/schematics/src/' '**/*.json' ../../../dist/clr-angular/schematics",
     "schematics:build": "npm-run-all schematics:build:ts schematics:build:collection",
     "website:start": "ng serve website",
-    "website:build": "npm run build:demos-doc && ng build website",
+    "website:build": "ng build website",
     "website:deploy": "./scripts/website.sh",
     "website:404": "cpy --rename 404.html dist/website/index.html dist/website",
     "website:functions": "netlify-lambda build scripts/netlify",
@@ -119,11 +119,13 @@
     "@angular/platform-server": "8.0.0",
     "@angular/router": "8.0.0",
     "@clr/city": "1.1.0",
+    "@vcd/ui-doc-lib": "file:doc-lib",
     "@webcomponents/custom-elements": "1.3.1",
     "@webcomponents/shadycss": "1.9.3",
     "@webcomponents/webcomponentsjs": "2.4.0",
     "core-js": "2.5.5",
     "css-vars-ponyfill": "2.1.2",
+    "firebase": ">= 5.5.7 <8",
     "jump.js": "1.0.2",
     "lit-element": "2.2.1",
     "lit-html": "1.1.2",
@@ -132,9 +134,7 @@
     "ramda": "0.26.1",
     "rxjs": "6.5.2",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
-    "zone.js": "~0.9.1",
-    "@vcd/ui-doc-lib": "./doc-lib",
-    "firebase": ">= 5.5.7 <8"
+    "zone.js": "~0.9.1"
   },
   "optionalDependencies": {
     "cypress": "3.4.1"
