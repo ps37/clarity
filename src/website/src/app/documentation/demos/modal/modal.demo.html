@@ -2,8 +2,7 @@
     <article>
 
         <h5 class="component-summary" id="modalsComponentSummary">
-            Modals provide information or help a user complete a task. They require the user to take an action to
-            dismiss them.
+          <vcd-overview-viewer [component]="documentationEntry?.component"> </vcd-overview-viewer>
         </h5>
 
         <div id="design-guidelines">
@@ -239,92 +238,15 @@
 
             <h3 id="summary-of-options">Summary of Options</h3>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="left">Input/Output</th>
-                    <th class="hidden-xs-down">Values</th>
-                    <th class="hidden-xs-down">Default</th>
-                    <th class="left">Effect</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="left">
-                        <b>[(clrModalOpen)]</b>
-                        <div class="hidden-sm-up">Type: Boolean</div>
-                        <div class="hidden-sm-up">Default: false</div>
-                    </td>
-                    <td class="hidden-xs-down">true, false</td>
-                    <td class="hidden-xs-down">false</td>
-                    <td class="left">
-                        Two-way binding on the state of the modal: opened or closed.
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <b>[clrModalSize]</b>
-                        <div class="hidden-sm-up">Values:<br/>"sm", &lt;none&gt;, "lg", "xl"</div>
-                        <div class="hidden-sm-up">Default: &lt;none&gt;</div>
-                    </td>
-                    <td class="hidden-xs-down">"sm", &lt;none&gt;, "lg", "xl"</td>
-                    <td class="hidden-xs-down">&lt;none&gt;</td>
-                    <td class="left">Sets the size of the modal. &lt;none&gt; is for medium size.</td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <b>[clrModalClosable]</b>
-                        <div class="hidden-sm-up">Type: Boolean</div>
-                        <div class="hidden-sm-up">Default: true</div>
-                    </td>
-                    <td class="hidden-xs-down">true, false</td>
-                    <td class="hidden-xs-down">true</td>
-                    <td class="left">
-                        If false, the modal will not be closable by clicking on the mask or on the top-right "x".
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <b>[clrModalStaticBackdrop]</b>
-                        <div class="hidden-sm-up">Type: Boolean</div>
-                        <div class="hidden-sm-up">Default: true</div>
-                    </td>
-                    <td class="hidden-xs-down">true, false</td>
-                    <td class="hidden-xs-down">true</td>
-                    <td class="left">If true, the modal will not close when the user clicks outside of the modal.</td>
-                </tr>
-                </tbody>
-            </table>
+            <vcd-api-viewer [component]="documentationEntry?.component"> </vcd-api-viewer>
 
-            <h4 id="examples">Examples</h4>
+            <h4>Examples</h4>
 
-            <clr-modal-angular-show-demo></clr-modal-angular-show-demo>
-
-            <h6 id="clrmodalsize">1. clrModalSize</h6>
-
-            <p>The Angular component offers the same optional sizes as the static styles through the
-                <code class="clr-code">clrModalSize</code> input. The default, empty size is medium.</p>
-
-            <clr-modal-angular-size-demo></clr-modal-angular-size-demo>
-
-            <h6 id="clrmodalclosable">2. clrModalClosable</h6>
-
-            <p>If you don’t want your modal to be closable by clicking on the top-right “x” or on the mask,
-                you can do so
-                with the <code class="clr-code">clrModalClosable</code> input. The default value is
-                <code class="clr-code">true</code>. You can still close the modal if one of <em>your</em>
-                components modifies the value bound to <code class="clr-code">clrModalOpen</code>.</p>
-
-            <clr-modal-angular-not-closable-demo></clr-modal-angular-not-closable-demo>
-
-            <h6 id="clrmodalstaticbackdrop">3. clrModalStaticBackdrop</h6>
-
-            <p>If you want the modal to be closable with a click on the backdrop, use the
-                <code class="clr-code">clrModalStaticBackdrop</code>.
-                If <code class="clr-code">false</code>, clicks on the background will close the modal.
-                The default value is <code class="clr-code">true</code>.</p>
-
-            <clr-modal-angular-static-backdrop-demo></clr-modal-angular-static-backdrop-demo>
+            <vcd-example-viewer
+              *ngFor="let exampleDescriptor of documentationEntry?.examples"
+              [exampleEntry]="exampleDescriptor"
+            >
+            </vcd-example-viewer>
 
             <h3 id="api-reference">API Reference</h3>
 
@@ -356,5 +278,6 @@
                 </tbody>
             </table>
         </div>
+
     </article>
 </clr-doc-wrapper>

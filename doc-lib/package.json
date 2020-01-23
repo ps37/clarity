@@ -1,0 +1,28 @@
+{
+  "name": "@vcd/ui-doc-lib",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "prismjs": "1.17.1"
+  },
+  "dependencies": {
+    "@compodoc/compodoc": "1.1.11",
+    "directory-tree": "^2.2.4",
+    "tslib": "^1.9.0"
+  },
+  "bin": {
+    "build-doc": "./scripts/index.js",
+    "create-stackblitz-data": "./scripts/create-stackblitz-data.js"
+  },
+  "main": "bundles/vcd-ui-doc-lib.umd.js",
+  "module": "fesm5/vcd-ui-doc-lib.js",
+  "es2015": "fesm2015/vcd-ui-doc-lib.js",
+  "esm5": "esm5/vcd-ui-doc-lib.js",
+  "esm2015": "esm2015/vcd-ui-doc-lib.js",
+  "fesm5": "fesm5/vcd-ui-doc-lib.js",
+  "fesm2015": "fesm2015/vcd-ui-doc-lib.js",
+  "typings": "vcd-ui-doc-lib.d.ts",
+  "metadata": "vcd-ui-doc-lib.metadata.json",
+  "sideEffects": false
+}
